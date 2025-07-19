@@ -14,4 +14,8 @@ class UserManual extends Page
     protected static ?string $navigationLabel = "Grower's Guide";
 
     protected static ?int $navigationSort = 4;
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }
