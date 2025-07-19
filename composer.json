@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.1",
         "asantibanez/livewire-charts": "^4.1",
+        "codeat3/blade-fontisto-icons": "^1.5",
         "consoletvs/charts": "^6.7",
         "dutchcodingcompany/filament-socialite": "^2.4",
         "filament/filament": "^3.2",
