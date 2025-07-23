@@ -4,7 +4,7 @@
     @livewireScripts
     @vite(['resources/css/custom.css', 'resources/css/app.css', 'resources/js/app.js'])
 
-    <livewire:pages.parameters-monitoring />
+    <livewire:pages.threshold-customization />
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js'
@@ -16,7 +16,7 @@
         // Initialize Firebase (replace with your Firebase config)
         var apiKey = "{{ env('API_KEY_FRB')}}";
         var authDomain = "{{ env('AUTH_DOMAIN')}}";
-        var databaseURL = "https://lambag-9007f-default-rtdb.asia-southeast1.firebasedatabase.app";
+        var databaseURL = "https://pondguard-e6c97-default-rtdb.firebaseio.com";
         var projectId = "{{ env('PROJECT_ID_FRB') }}";
         var storageBucket = "{{ env('STORAGE_BUCKET_FRB') }}";
         var messagingSenderId = "{{ env('MESSAGING_SENDER_ID_FRB') }}";

@@ -8,27 +8,25 @@ use Kreait\Firebase\Contract\Database;
 class ParametersMonitoring extends Component
 {
     protected Database $database;
-    public $phData;
-    public $phTresholdData;
-    public $setPHTresholdValue;
 
-    public $doData;
-    public $doTresholdData;
-    public $setDOTresholdValue;
-
-    public $alData;
-    public $alTresholdData;
-    public $setALTresholdValue;
-
-    public $wTempData;
-    public $wTempTresholdData;
-    public $setWTTresholdValue;
+    public $temperatureData;
+    public $humidityData;
+    public $liquidTempData;
+    public $alcoholData;
+    public $brixData;
+    public $pHLevelData;
+    public $liquidLevelData;
+   
+   
 
     protected $listeners = [
-        'updatePhLevel' => 'handlePhLevelUpdate',
-        'updateDOLevel' => 'handleDoLevelUpdate',
-        'updateALLevel' => 'handleAlLevelUpdate',
-        'updateWTLevel' => 'handleWtLevelUpdate'
+        'updateTemperature' => 'handleTemperatureUpdate',
+        'updateHumidity' => 'handleHumidityUpdate',
+        'updateLiquidTemp' => 'handleLiquidTempUpdate',
+        'updateAlcohol' => 'handleAlcoholUpdate',
+        'updateBrix' => 'handleBrixUpdate',
+        'updatePHLevel' => 'handlePHLevelUpdate',
+        'updateLiquidLevel' => 'handleLiquidLevelUpdate',
     ];
 
 
@@ -42,122 +40,29 @@ class ParametersMonitoring extends Component
     public function fetchData()
     {
         try {
-            // PH
-            $referencePH = $this->database->getReference('pHLevel/phLevel');  // Example path
-            $snapshotPH = $referencePH->getSnapshot();
-            $this->phData = $snapshotPH->getValue();
+            // TEMPERATURE
+            $referenceTemp = $this->database->getReference('/Temperature');  // Example path
+            $snapshotTemp = $referenceTemp->getSnapshot();
+            $this->temperatureData = $snapshotTemp->getValue();
 
-            $referencePHTresh = $this->database->getReference('pHLevel/Treshold');  // Example path
-            $snapshotPHTresh = $referencePHTresh->getSnapshot();
-            $this->phTresholdData = $snapshotPHTresh->getValue();
+            // Humidity
+            $referenceHumid = $this->database->getReference('/Humidity');  // Example path
+            $snapshotHumid = $referenceHumid->getSnapshot();
+            $this->humidityData = $snapshotHumid->getValue();
 
-            // DISSOLVED OXYGEN
-            $referenceDO = $this->database->getReference('DissolvedOxygen/DO');  // Example path
-            $snapshotDO = $referenceDO->getSnapshot();
-            $this->doData = $snapshotDO->getValue();
-
-            $referenceDOTresh = $this->database->getReference('DissolvedOxygen/Treshold');  // Example path
-            $snapshotDOTresh = $referenceDOTresh->getSnapshot();
-            $this->doTresholdData = $snapshotDOTresh->getValue();
-
-            // ALKALINITY LEVEL
-            $referenceAL = $this->database->getReference('AlkalinityLevel/AL');  // Example path
-            $snapshotAL = $referenceAL->getSnapshot();
-            $this->alData = $snapshotAL->getValue();
-
-            $referenceALTresh = $this->database->getReference('AlkalinityLevel/Treshold');  // Example path
-            $snapshotALTresh = $referenceALTresh->getSnapshot();
-            $this->alTresholdData = $snapshotALTresh->getValue();
-
-            // WATER TEMPERATURE
-            $referenceWT = $this->database->getReference('WaterTemperature/Temperature');  // Example path
-            $snapshotWT = $referenceWT->getSnapshot();
-            $this->wTempData = $snapshotWT->getValue();
-
-            $referenceWTTresh = $this->database->getReference('WaterTemperature/Treshold');  // Example path
-            $snapshotWTTresh = $referenceWTTresh->getSnapshot();
-            $this->wTempTresholdData = $snapshotWTTresh->getValue();
-
+            // Liquid Temp
+            $referenceLiquidTemp = $this->database->getReference('/LiquidTemp');  // Example path
+            $snapshotLiquidTemp = $referenceLiquidTemp->getSnapshot();
+            $this->liquidTempData = $snapshotLiquidTemp->getValue();
 
         } catch (\Exception $e) {
-            $this->phData = 'Error: ' . $e->getMessage();
+            $this->temperatureData = 'Error: ' . $e->getMessage();
         }
     }
 
-    public function handlePhLevelUpdate($phLevel)
+    public function handleTemperatureUpdate($temperatureData)
     {
-        $this->phData = $phLevel;
-    }
-
-    public function handleDoLevelUpdate($doLevel)
-    {
-        $this->doData = $doLevel;
-    }
-
-    public function handleAlLevelUpdate($alLevel)
-    {
-        $this->alData = $alLevel;
-    }
-
-    public function handleWtLevelUpdate($wtLevel)
-    {
-        $this->wTempData = $wtLevel;
-    }
-
-    public function setPHTreshold(Database $database){
-        $this->database = $database;
-        try {
-            // Set pH threshold
-            $referencePHTresh = $this->database->getReference('pHLevel/Treshold');
-            $thresholdValue = (float) $this->setPHTresholdValue;
-            $referencePHTresh->set($thresholdValue); 
-            $this->dispatch('reload');
-        } catch (\Exception $e) {
-            // Handle error
-            return response()->json(['error' => 'Error setting data: ' . $e->getMessage()], 500);
-        }
-    }
-
-    public function setDOTreshold(Database $database){
-        $this->database = $database;
-        try {
-            // Set pH threshold
-            $referenceDOTresh = $this->database->getReference('DissolvedOxygen/Treshold');
-            $thresholdValue = (float) $this->setDOTresholdValue;
-            $referenceDOTresh->set($thresholdValue); 
-            $this->dispatch('reload');
-        } catch (\Exception $e) {
-            // Handle error
-            return response()->json(['error' => 'Error setting data: ' . $e->getMessage()], 500);
-        }
-    }
-
-    public function setALTreshold(Database $database){
-        $this->database = $database;
-        try {
-            // Set pH threshold
-            $referenceALTresh = $this->database->getReference('AlkalinityLevel/Treshold');
-            $thresholdValue = (float) $this->setALTresholdValue;
-            $referenceALTresh->set($thresholdValue); 
-            $this->dispatch('reload');
-        } catch (\Exception $e) {
-            // Handle error
-            return response()->json(['error' => 'Error setting data: ' . $e->getMessage()], 500);
-        }
-    }
-
-    public function setWTTreshold(Database $database){
-        $this->database = $database;
-        try {
-            // Set pH threshold
-            $referenceWTTresh = $this->database->getReference('WaterTemperature/Treshold');
-            $thresholdValue = (float) $this->setWTTresholdValue;
-            $referenceWTTresh->set($thresholdValue); 
-            $this->dispatch('reload');
-        } catch (\Exception $e) {
-            // Handle error
-            return response()->json(['error' => 'Error setting data: ' . $e->getMessage()], 500);
-        }
+        $this->temperatureData = $temperatureData;
     }
 
     public function render()

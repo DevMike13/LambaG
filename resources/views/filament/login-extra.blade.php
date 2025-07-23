@@ -58,6 +58,10 @@ body {
       position: absolute; right: 100px;
     
     }
+    .custom-terms-button-input{
+      margin-left: -99px !important;
+      margin-top: 1.5px;
+    }
     .login-heading{
       font-size: 48px;
       font-weight: 700;
@@ -121,7 +125,12 @@ body {
   z-index: -1;
   opacity: 0.9;
 }
-
+@media screen and (max-width: 1023px) {
+  .custom-terms-button-input {
+      margin-left: -200px !important;
+      margin-top: 3px !important;
+  }
+}
 /* Additional clones for effect */
 /* .broccoli::before,
 .broccoli::after {
