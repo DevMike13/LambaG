@@ -1,5 +1,5 @@
 <div>
-    <div class="w-full max-w-sm mb-3 ml-auto">
+    {{-- <div class="w-full max-w-sm mb-3 ml-auto">
         <x-select
             label="Select Board"
             placeholder="Select one board"
@@ -134,7 +134,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- <div class="flex items-center flex-col nt-3" wire:ignore>
         <div class="w-full flex flex-col lg:flex-row">
             <div class="w-full lg:w-1/2">

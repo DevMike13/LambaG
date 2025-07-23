@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('sensor_datas', function (Blueprint $table) {
             $table->id();
-            $table->integer('cycle_id');
-            $table->decimal('ph_level', 4, 2);
-            $table->decimal('dissolved_oxygen', 5, 2);
-            $table->decimal('alkalinity_level', 6, 2);
-            $table->decimal('water_temperature', 5, 2);
+            $table->decimal('temperature', 5, 2);
+            $table->decimal('humidity', 5, 2);
+            $table->decimal('liquid_temp', 5, 2);
+            $table->decimal('alcohol', 5, 2);
+            $table->decimal('pH_level', 6, 2);
+            $table->decimal('brix', 6, 2);
+            $table->decimal('liquid_level', 6, 2);
             $table->date('reading_date');
             $table->timestamps();
         });

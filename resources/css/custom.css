@@ -16,11 +16,14 @@
     .fi-page{
         width: 95%;
     }
+    
 }
 .fi-sidebar-nav{
     background-color: #06402a;
     color: antiquewhite;
 }
+
+
 .fi-sidebar-nav-groups > li{
     :hover {
         background-color: #06402a;

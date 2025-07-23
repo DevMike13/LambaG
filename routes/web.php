@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', HomePage::class)->name('home');
 Route::get('/logagain', function () {
-    return redirect( '/pondguard-admin');
+    return redirect( '/lambag-admin');
 })->name('login');

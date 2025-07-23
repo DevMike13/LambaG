@@ -32,17 +32,18 @@ class PondguardAdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('ibroccogreens-admin')
-            ->path('ibroccogreens-admin')
+            ->id('lambag-admin')
+            ->path('lambag-admin')
             ->login()
             ->registration(Register::class)
             ->passwordReset()
             ->emailVerification()
             ->profile()
-            ->brandLogo(asset('images/ibroccogreens-logo-rev.svg'))
+            ->brandLogo(asset('images/lambag-logo.jpg'))
+            // ->brandLogoHeight('5em')
             ->favicon(asset('favicon.ico'))
             ->colors([
-                'primary' => '#659d38',
+                'primary' => '#0d4530',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -65,30 +66,30 @@ class PondguardAdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->plugin(
-                FilamentSocialitePlugin::make()
+            // ->plugin(
+                // FilamentSocialitePlugin::make()
                     // (required) Add providers corresponding with providers in `config/services.php`. 
-                    ->providers([
-                        // Create a provider 'gitlab' corresponding to the Socialite driver with the same name.
-                        Provider::make('google')
-                            ->label('Login with Google')
-                            ->icon('fab-google')
-                            ->color(Color::hex('#2f2a6b'))
-                            ->outlined(false)
-                            ->stateless(false)
-                            // ->scopes(['...'])
-                            // ->with([']),
-                    ])
+                    // ->providers([
+                    //     // Create a provider 'gitlab' corresponding to the Socialite driver with the same name.
+                    //     Provider::make('google')
+                    //         ->label('Login with Google')
+                    //         ->icon('fab-google')
+                    //         ->color(Color::hex('#2f2a6b'))
+                    //         ->outlined(false)
+                    //         ->stateless(false)
+                    //         // ->scopes(['...'])
+                    //         // ->with([']),
+                    // ])
                     // (optional) Enable/disable registration of new (socialite-) users.
-                    ->registration(true)
+                    // ->registration(true)
                     // (optional) Enable/disable registration of new (socialite-) users using a callback.
                     // In this example, a login flow can only continue if there exists a user (Authenticatable) already.
                     // ->registration(fn (string $provider, SocialiteUserContract $oauthUser, ?Authenticatable $user) => (bool) $user)
                     // (optional) Change the associated model class.
-                    ->userModelClass(User::class)
+                    // ->userModelClass(User::class)
                     // (optional) Change the associated socialite class (see below).
-                    ->socialiteUserModelClass(SocialiteUser::class)
-            )
+                    // ->socialiteUserModelClass(SocialiteUser::class)
+            // )
             ->authMiddleware([
                 Authenticate::class,
             ]);

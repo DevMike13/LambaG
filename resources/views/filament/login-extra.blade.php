@@ -15,13 +15,17 @@
   @if (request()->is('ibroccogreens-admin/register'))
       <img src="{{ asset('images/pana.png') }}" alt="" class="left-illustration-registration illustration-image">
   @else
-      <img src="{{ asset('images/Illustration-1.png') }}" alt="" class="left-illustration-login illustration-image">
+    <div class="left-illustration-login illustration-image">
+        <h1 class="login-heading">CAPISTRANO DISTILLERY</h1>
+        <h2 class="login-subheading">LAMBAG</h2>
+        <p>An IoT Web-based System for Real-Time Fermentation Monitoring and Alcohol Level Analysis with SMS Notification for Lambanog Production at Capistrano Distillery</p>
+    </div>
   @endif
 
-  @for ($i = 0; $i < 20; $i++)
+  @for ($i = 0; $i < 50; $i++)
       <img
-          src="{{ asset('images/broccoli.svg') }}"
-          class="broccoli near-illustration"
+          src="{{ asset('images/bubble.png') }}"
+          class="bubble near-illustration"
           style="
               left: {{ rand(0, 100) }}%;
               animation-delay: {{ rand(0, 5000) / 1000 }}s;
@@ -54,7 +58,15 @@ body {
       position: absolute; right: 100px;
     
     }
-
+    .login-heading{
+      font-size: 48px;
+      font-weight: 700;
+    }
+    .login-subheading{
+      font-size: 30px;
+      font-weight: 700;
+      margin-top: 50px;
+    }
     .illustration-wrapper {
         position: fixed;
         top: 0;
@@ -68,9 +80,10 @@ body {
 
     .illustration-image {
         position: absolute;
-        left: 100px;
-        top: 50px;
-        width: 350px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
         height: auto;
         z-index: 2;
         pointer-events: auto;
@@ -84,23 +97,27 @@ body {
         z-index: 2;
     }
 
-    .broccoli {
+    .bubble {
         position: absolute;
-        top: -100px;
-        animation: drop-broccoli 5s linear infinite;
+        bottom: -100px;
+        animation: rise-bubble 5s linear infinite;
         opacity: 0.9;
-        z-index: 0;
+        z-index: -1;
         pointer-events: none;
     }
 
 
 }
-    
-.broccoli {
+  
+.fi-simple-main{
+  background-color: #6e8c80;
+}
+
+.bubble {
   position: absolute;
-  top: -100px;
+  bottom: -100px;
   width: 40px;
-  animation: drop-broccoli 5s linear infinite;
+  animation: rise-bubble 5s linear infinite;
   z-index: -1;
   opacity: 0.9;
 }
@@ -120,13 +137,13 @@ body {
 } */
 
 /* Animation */
-@keyframes drop-broccoli {
+@keyframes rise-bubble {
     0% {
-        transform: translateY(-100px) rotate(0deg);
+        transform: translateY(0px) rotate(0deg);
         opacity: 1;
     }
     100% {
-        transform: translateY(110vh) rotate(360deg);
+        transform: translateY(-110vh) rotate(360deg);
         opacity: 0;
     }
 }
