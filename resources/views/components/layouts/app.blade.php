@@ -11,9 +11,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        @livewire('partials.navbar')
+        {{-- @livewire('partials.navbar') --}}
         {{ $slot }}
-        @livewire('partials.footer')
+        {{-- @livewire('partials.footer') --}}
         @livewireScripts
     </body>
 </html>
