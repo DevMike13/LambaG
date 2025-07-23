@@ -17,7 +17,7 @@
                         Temp (°C)
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        {{number_format($temperatureData, 2, '.', ',')}} °C
                     </td>
                 </tr>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
@@ -25,7 +25,7 @@
                         Humidity (%)
                     </th>
                     <td class="px-6 py-4">
-                        White
+                        {{number_format($humidityData, 2, '.', ',')}} %
                     </td>
                 </tr>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
@@ -33,7 +33,7 @@
                         Liquid Temp (°C)
                     </th>
                     <td class="px-6 py-4">
-                        Black
+                        {{number_format($liquidTempData, 2, '.', ',')}} °C
                     </td>
                 </tr>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
@@ -41,7 +41,7 @@
                         Alcohol Level (%)
                     </th>
                     <td class="px-6 py-4">
-                        Gray
+                        {{number_format($alcoholData, 2, '.', ',')}} %
                     </td>
                 </tr>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
@@ -49,7 +49,7 @@
                         Sugar (°Brix)
                     </th>
                     <td class="px-6 py-4">
-                        Red
+                        {{number_format($brixData, 2, '.', ',')}} %
                     </td>
                 </tr>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
@@ -57,7 +57,7 @@
                         pH Level
                     </th>
                     <td class="px-6 py-4">
-                        Red
+                        {{number_format($pHLevelData, 2, '.', ',')}}
                     </td>
                 </tr>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
@@ -65,7 +65,7 @@
                         Liquid Level (%)
                     </th>
                     <td class="px-6 py-4">
-                        Red
+                        {{number_format($liquidLevelData, 2, '.', ',')}} %
                     </td>
                 </tr>
             </tbody>

@@ -55,27 +55,76 @@ class ParametersMonitoring extends Component
             $snapshotLiquidTemp = $referenceLiquidTemp->getSnapshot();
             $this->liquidTempData = $snapshotLiquidTemp->getValue();
 
+            // Alcohol Level
+            $referenceAlcohol = $this->database->getReference('/AlcoholLevel');  // Example path
+            $snapshotAlcohol = $referenceAlcohol->getSnapshot();
+            $this->alcoholData = $snapshotAlcohol->getValue();
+
+            // Brix
+            $referenceBrix = $this->database->getReference('/Brix');  // Example path
+            $snapshotBrix = $referenceBrix->getSnapshot();
+            $this->brixData = $snapshotBrix->getValue();
+
+            // pH Level
+            $referencePHLevel = $this->database->getReference('/pHLevel');  // Example path
+            $snapshotPHLevel = $referencePHLevel->getSnapshot();
+            $this->pHLevelData = $snapshotPHLevel->getValue();
+
+            // Liquid Level
+            $referenceLiquidLevel = $this->database->getReference('/LiquidLevel');  // Example path
+            $snapshotLiquidLevel = $referenceLiquidLevel->getSnapshot();
+            $this->liquidLevelData = $snapshotLiquidLevel->getValue();
+
         } catch (\Exception $e) {
             $this->temperatureData = 'Error: ' . $e->getMessage();
         }
     }
 
-    public function handleTemperatureUpdate($temperatureData)
+    public function handleTemperatureUpdate($temperature)
     {
-        $this->temperatureData = $temperatureData;
+        $this->temperatureData = $temperature;
+    }
+
+    public function handleHumidityUpdate($humidity)
+    {
+        $this->humidityData = $humidity;
+    }
+
+    public function handleLiquidTempUpdate($liquidTemp)
+    {
+        $this->liquidTempData = $liquidTemp;
+    }
+
+    public function handleAlcoholUpdate($alcohol)
+    {
+        $this->alcoholData = $alcohol;
+    }
+
+    public function handleBrixUpdate($brix)
+    {
+        $this->brixData = $brix;
+    }
+
+    public function handlePHLevelUpdate($pHLevel)
+    {
+        $this->pHLevelData = $pHLevel;
+    }
+
+    public function handleLiquidLevelUpdate($liquidLevel)
+    {
+        $this->liquidLevelData = $liquidLevel;
     }
 
     public function render()
     {
         return view('livewire.pages.parameters-monitoring', [
-            'pHLevel' => $this->phData,
-            'pHTreshold' => $this->phTresholdData,
-            'DissolvedOxygen' => $this->doData,
-            'DOTreshold' => $this->doTresholdData,
-            'AlkalinityLevel' => $this->alData,
-            'ALTreshold' => $this->alTresholdData,
-            'WaterTemperature' => $this->wTempData,
-            'WTTreshold' => $this->wTempTresholdData
+            'temperature' => $this->temperatureData,
+            'humidity' => $this->humidityData,
+            'liquidTemp' => $this->liquidTempData,
+            'alcohol' => $this->alcoholData,
+            'brix' => $this->brixData,
+            'pHLevel' => $this->pHLevelData,
+            'liquidLevel' => $this->liquidLevelData
         ]);
     }
 }

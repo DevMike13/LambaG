@@ -39,36 +39,62 @@
 
         const database = getDatabase(app);
     
+        // Listen for real-time updates on Temperature
+        const tempRef = ref(database, '/Temperature');
+        onValue(tempRef, (snapshot) => {
+            const temperature = snapshot.val();
+            console.log('Temperature: ', temperature);
+            Livewire.dispatch('updateTemperature', { temperature: temperature});
+        });
+
+        // Listen for real-time updates on Humidity
+        const humidRef = ref(database, '/Humidity');
+        onValue(humidRef, (snapshot) => {
+            const humidity = snapshot.val();
+            console.log('Humidity: ', humidity);
+            Livewire.dispatch('updateHumidity', { humidity: humidity});
+        });
+
+        // Listen for real-time updates on Liquid Temp
+        const liquidTempRef = ref(database, '/LiquidTemp');
+        onValue(liquidTempRef, (snapshot) => {
+            const liquidTemp = snapshot.val();
+            console.log('Liquid Temperature: ', liquidTemp);
+            Livewire.dispatch('updateLiquidTemp', { liquidTemp: liquidTemp});
+        });
+        
+        // Listen for real-time updates on Alcohol Level
+        const alcoholLevelRef = ref(database, '/AlcoholLevel');
+        onValue(alcoholLevelRef, (snapshot) => {
+            const alcohol = snapshot.val();
+            console.log('Alcohol Level: ', alcohol);
+            Livewire.dispatch('updateAlcohol', { alcohol: alcohol});
+        });
+
+        // Listen for real-time updates on Brix
+        const brixRef = ref(database, '/Brix');
+        onValue(brixRef, (snapshot) => {
+            const brix = snapshot.val();
+            console.log('Brix: ', brix);
+            Livewire.dispatch('updateBrix', { brix: brix});
+        });
+
         // Listen for real-time updates on pH Level
-        const phRef = ref(database, 'pHLevel/phLevel');
-        onValue(phRef, (snapshot) => {
-            const phLevel = snapshot.val();
-            console.log('pH Level: ', phLevel);
-            // Trigger Livewire update (assuming you have a Livewire listener)
-            Livewire.dispatch('updatePhLevel', { phLevel: phLevel});
+        const pHLevelRef = ref(database, '/pHLevel');
+        onValue(pHLevelRef, (snapshot) => {
+            const pHLevel = snapshot.val();
+            console.log('pH Level: ', pHLevel);
+            Livewire.dispatch('updatePHLevel', { pHLevel: pHLevel});
         });
-    
-        // Repeat for other parameters (DO, AL, WT)
-        const doRef = ref(database, 'DissolvedOxygen/DO');
-        onValue(doRef, (snapshot) => {
-            const doLevel = snapshot.val();
-            console.log('Dissolved Oxygen: ', doLevel);
-            Livewire.dispatch('updateDOLevel', { doLevel: doLevel});
+
+        // Listen for real-time updates on Liquid Level
+        const liquidLevelRef = ref(database, '/LiquidLevel');
+        onValue(liquidLevelRef, (snapshot) => {
+            const liquidLevel = snapshot.val();
+            console.log('Liquid Level: ', liquidLevel);
+            Livewire.dispatch('updateLiquidLevel', { liquidLevel: liquidLevel});
         });
-    
-        const alRef = ref(database, 'AlkalinityLevel/AL');
-        onValue(alRef, (snapshot) => {
-            const alLevel = snapshot.val();
-            console.log('Alkalinity Level: ', alLevel);
-            Livewire.dispatch('updateALLevel', { alLevel: alLevel});
-        });
-    
-        const wtRef = ref(database, 'WaterTemperature/Temperature');
-        onValue(wtRef, (snapshot) => {
-            const wtLevel = snapshot.val();
-            console.log('Water Temperature: ', wtLevel);
-            Livewire.dispatch('updateWTLevel', { wtLevel: wtLevel});
-        });
+        
     </script>
     <script>
         window.addEventListener('reload', event => {
