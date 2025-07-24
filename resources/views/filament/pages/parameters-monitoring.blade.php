@@ -40,7 +40,7 @@
         const database = getDatabase(app);
     
         // Listen for real-time updates on Temperature
-        const tempRef = ref(database, '/Temperature');
+        const tempRef = ref(database, '/Temperature/SensorValue');
         onValue(tempRef, (snapshot) => {
             const temperature = snapshot.val();
             console.log('Temperature: ', temperature);
@@ -48,7 +48,7 @@
         });
 
         // Listen for real-time updates on Humidity
-        const humidRef = ref(database, '/Humidity');
+        const humidRef = ref(database, '/Humidity/SensorValue');
         onValue(humidRef, (snapshot) => {
             const humidity = snapshot.val();
             console.log('Humidity: ', humidity);
@@ -56,7 +56,7 @@
         });
 
         // Listen for real-time updates on Liquid Temp
-        const liquidTempRef = ref(database, '/LiquidTemp');
+        const liquidTempRef = ref(database, '/LiquidTemp/SensorValue');
         onValue(liquidTempRef, (snapshot) => {
             const liquidTemp = snapshot.val();
             console.log('Liquid Temperature: ', liquidTemp);
@@ -64,7 +64,7 @@
         });
         
         // Listen for real-time updates on Alcohol Level
-        const alcoholLevelRef = ref(database, '/AlcoholLevel');
+        const alcoholLevelRef = ref(database, '/AlcoholLevel/SensorValue');
         onValue(alcoholLevelRef, (snapshot) => {
             const alcohol = snapshot.val();
             console.log('Alcohol Level: ', alcohol);
@@ -72,7 +72,7 @@
         });
 
         // Listen for real-time updates on Brix
-        const brixRef = ref(database, '/Brix');
+        const brixRef = ref(database, '/Brix/SensorValue');
         onValue(brixRef, (snapshot) => {
             const brix = snapshot.val();
             console.log('Brix: ', brix);
@@ -80,7 +80,7 @@
         });
 
         // Listen for real-time updates on pH Level
-        const pHLevelRef = ref(database, '/pHLevel');
+        const pHLevelRef = ref(database, '/pHLevel/SensorValue');
         onValue(pHLevelRef, (snapshot) => {
             const pHLevel = snapshot.val();
             console.log('pH Level: ', pHLevel);
@@ -88,7 +88,7 @@
         });
 
         // Listen for real-time updates on Liquid Level
-        const liquidLevelRef = ref(database, '/LiquidLevel');
+        const liquidLevelRef = ref(database, '/LiquidLevel/SensorValue');
         onValue(liquidLevelRef, (snapshot) => {
             const liquidLevel = snapshot.val();
             console.log('Liquid Level: ', liquidLevel);

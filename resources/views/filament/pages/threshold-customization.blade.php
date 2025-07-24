@@ -16,7 +16,7 @@
         // Initialize Firebase (replace with your Firebase config)
         var apiKey = "{{ env('API_KEY_FRB')}}";
         var authDomain = "{{ env('AUTH_DOMAIN')}}";
-        var databaseURL = "https://pondguard-e6c97-default-rtdb.firebaseio.com";
+        var databaseURL = "https://lambag-9007f-default-rtdb.asia-southeast1.firebasedatabase.app";
         var projectId = "{{ env('PROJECT_ID_FRB') }}";
         var storageBucket = "{{ env('STORAGE_BUCKET_FRB') }}";
         var messagingSenderId = "{{ env('MESSAGING_SENDER_ID_FRB') }}";
@@ -38,6 +38,62 @@
         const app = initializeApp(firebaseConfig);
 
         const database = getDatabase(app);
+
+        // Listen for real-time updates on Temperature
+        const tempRef = ref(database, '/Temperature/SensorValue');
+        onValue(tempRef, (snapshot) => {
+            const temperature = snapshot.val();
+            console.log('Temperature: ', temperature);
+            Livewire.dispatch('updateTemperature', { temperature: temperature});
+        });
+
+        // Listen for real-time updates on Humidity
+        const humidRef = ref(database, '/Humidity/SensorValue');
+        onValue(humidRef, (snapshot) => {
+            const humidity = snapshot.val();
+            console.log('Humidity: ', humidity);
+            Livewire.dispatch('updateHumidity', { humidity: humidity});
+        });
+
+        // Listen for real-time updates on Liquid Temp
+        const liquidTempRef = ref(database, '/LiquidTemp/SensorValue');
+        onValue(liquidTempRef, (snapshot) => {
+            const liquidTemp = snapshot.val();
+            console.log('Liquid Temperature: ', liquidTemp);
+            Livewire.dispatch('updateLiquidTemp', { liquidTemp: liquidTemp});
+        });
+        
+        // Listen for real-time updates on Alcohol Level
+        const alcoholLevelRef = ref(database, '/AlcoholLevel/SensorValue');
+        onValue(alcoholLevelRef, (snapshot) => {
+            const alcohol = snapshot.val();
+            console.log('Alcohol Level: ', alcohol);
+            Livewire.dispatch('updateAlcohol', { alcohol: alcohol});
+        });
+
+        // Listen for real-time updates on Brix
+        const brixRef = ref(database, '/Brix/SensorValue');
+        onValue(brixRef, (snapshot) => {
+            const brix = snapshot.val();
+            console.log('Brix: ', brix);
+            Livewire.dispatch('updateBrix', { brix: brix});
+        });
+
+        // Listen for real-time updates on pH Level
+        const pHLevelRef = ref(database, '/pHLevel/SensorValue');
+        onValue(pHLevelRef, (snapshot) => {
+            const pHLevel = snapshot.val();
+            console.log('pH Level: ', pHLevel);
+            Livewire.dispatch('updatePHLevel', { pHLevel: pHLevel});
+        });
+
+        // Listen for real-time updates on Liquid Level
+        const liquidLevelRef = ref(database, '/LiquidLevel/SensorValue');
+        onValue(liquidLevelRef, (snapshot) => {
+            const liquidLevel = snapshot.val();
+            console.log('Liquid Level: ', liquidLevel);
+            Livewire.dispatch('updateLiquidLevel', { liquidLevel: liquidLevel});
+        });
     
         // Listen for real-time updates on pH Level
         const phRef = ref(database, 'pHLevel/phLevel');
@@ -68,6 +124,22 @@
             const wtLevel = snapshot.val();
             console.log('Water Temperature: ', wtLevel);
             Livewire.dispatch('updateWTLevel', { wtLevel: wtLevel});
+        });
+
+        // Listen to SMS State
+        const smsRef = ref(database, 'System/SMS');
+        onValue(smsRef, (snapshot) => {
+            const smsState = snapshot.val();
+            console.log('SMS State: ', smsState);
+            Livewire.dispatch('updateSMSState', { smsState });
+        });
+
+        // Listen to Buzzer State
+        const buzzerRef = ref(database, 'System/Buzzer');
+        onValue(buzzerRef, (snapshot) => {
+            const buzzerState = snapshot.val();
+            console.log('Buzzer State: ', buzzerState);
+            Livewire.dispatch('updateBuzzerState', { buzzerState });
         });
     </script>
     <script>

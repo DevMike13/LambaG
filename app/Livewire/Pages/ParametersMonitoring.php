@@ -41,37 +41,37 @@ class ParametersMonitoring extends Component
     {
         try {
             // TEMPERATURE
-            $referenceTemp = $this->database->getReference('/Temperature');  // Example path
+            $referenceTemp = $this->database->getReference('/Temperature/SensorValue');  // Example path
             $snapshotTemp = $referenceTemp->getSnapshot();
             $this->temperatureData = $snapshotTemp->getValue();
 
             // Humidity
-            $referenceHumid = $this->database->getReference('/Humidity');  // Example path
+            $referenceHumid = $this->database->getReference('/Humidity/SensorValue');  // Example path
             $snapshotHumid = $referenceHumid->getSnapshot();
             $this->humidityData = $snapshotHumid->getValue();
 
             // Liquid Temp
-            $referenceLiquidTemp = $this->database->getReference('/LiquidTemp');  // Example path
+            $referenceLiquidTemp = $this->database->getReference('/LiquidTemp/SensorValue');  // Example path
             $snapshotLiquidTemp = $referenceLiquidTemp->getSnapshot();
             $this->liquidTempData = $snapshotLiquidTemp->getValue();
 
             // Alcohol Level
-            $referenceAlcohol = $this->database->getReference('/AlcoholLevel');  // Example path
+            $referenceAlcohol = $this->database->getReference('/AlcoholLevel/SensorValue');  // Example path
             $snapshotAlcohol = $referenceAlcohol->getSnapshot();
             $this->alcoholData = $snapshotAlcohol->getValue();
 
             // Brix
-            $referenceBrix = $this->database->getReference('/Brix');  // Example path
+            $referenceBrix = $this->database->getReference('/Brix/SensorValue');  // Example path
             $snapshotBrix = $referenceBrix->getSnapshot();
             $this->brixData = $snapshotBrix->getValue();
 
             // pH Level
-            $referencePHLevel = $this->database->getReference('/pHLevel');  // Example path
+            $referencePHLevel = $this->database->getReference('/pHLevel/SensorValue');  // Example path
             $snapshotPHLevel = $referencePHLevel->getSnapshot();
             $this->pHLevelData = $snapshotPHLevel->getValue();
 
             // Liquid Level
-            $referenceLiquidLevel = $this->database->getReference('/LiquidLevel');  // Example path
+            $referenceLiquidLevel = $this->database->getReference('/LiquidLevel/SensorValue');  // Example path
             $snapshotLiquidLevel = $referenceLiquidLevel->getSnapshot();
             $this->liquidLevelData = $snapshotLiquidLevel->getValue();
 
