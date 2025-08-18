@@ -16,7 +16,8 @@ class ParametersMonitoring extends Component
     public $brixData;
     public $pHLevelData;
     public $liquidLevelData;
-   
+    
+    public $brixSetData;
    
 
     protected $listeners = [
@@ -113,6 +114,21 @@ class ParametersMonitoring extends Component
     public function handleLiquidLevelUpdate($liquidLevel)
     {
         $this->liquidLevelData = $liquidLevel;
+    }
+
+    public function setBrixValue(Database $database){
+        $this->database = $database;
+        try {
+            // Set Temperature Min threshold
+            $referenceBrixValueSet = $this->database->getReference('Brix/SensorValue');
+            $brixValueSetted = (float) $this->brixSetData;
+            $referenceBrixValueSet->set($brixValueSetted);
+
+            $this->dispatch('reload');
+        } catch (\Exception $e) {
+            // Handle error
+            return response()->json(['error' => 'Error setting data: ' . $e->getMessage()], 500);
+        }
     }
 
     public function render()

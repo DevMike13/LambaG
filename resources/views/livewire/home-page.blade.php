@@ -1,8 +1,8 @@
 <div class="flex flex-col md:flex-row w-full h-screen bg-gradient-to-r lg:pt-0 md:pt-10 bg-[#d9d9d9] overflow-hidden">
     <div class="w-full h-full flex flex-col lg:flex-row mx-auto">
         <div class="w-full lg:w-[60%] h-full flex flex-col justify-center px-5 md:px-16 gap-5 bg-[#6e8c80] lg:rounded-r-3xl">
-            <div class="w-20 h-24 flex mx-auto lg:hidden">
-                <img src="{{ asset('/images/lambag-logo.jpg') }}" alt="logo" class="w-full h-auto">
+            <div class="w-16 h-24 flex mx-auto lg:hidden">
+                <img src="{{ asset('/images/lambag-logo.png') }}" alt="logo" class="w-full h-auto">
             </div>
             <h1 class="font-bold text-4xl text-white text-center lg:text-left">CAPISTRANO DISTILLERY</h1>
             <h2 class="font-semibold text-xl text-white text-center lg:text-left">LAMBAG</h2>
@@ -10,8 +10,8 @@
             
         </div>
         <div class="w-full lg:w-[40%] h-full flex flex-col justify-between items-center py-10 bg-[#6e8c80] lg:bg-[#d9d9d9]">
-            <div class="w-30 h-30 hidden lg:flex">
-                <img src="{{ asset('/images/lambag-logo.jpg') }}" alt="logo" class="w-full h-auto">
+            <div class="w-16 h-24 hidden lg:flex">
+                <img src="{{ asset('/images/lambag-logo.png') }}" alt="logo" class="w-full h-auto">
             </div>
             <div class="flex flex-col justify-center items-center">
                 <h1 class="text-2xl font-semibold hidden lg:flex">LAMBAG</h1>

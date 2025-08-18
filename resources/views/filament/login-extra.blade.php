@@ -22,7 +22,7 @@
     </div>
   @endif
 
-  @for ($i = 0; $i < 50; $i++)
+  {{-- @for ($i = 0; $i < 50; $i++)
       <img
           src="{{ asset('images/bubble.png') }}"
           class="bubble near-illustration"
@@ -33,7 +33,7 @@
               width: {{ rand(20, 50) }}px;
           "
       />
-  @endfor
+  @endfor --}}
 </div>
 
 
@@ -109,7 +109,6 @@ body {
         z-index: -1;
         pointer-events: none;
     }
-
 
 }
   

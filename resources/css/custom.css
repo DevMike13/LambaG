@@ -8,6 +8,7 @@
         display: flex !important;
         justify-content: center;
         max-width: 100% !important;
+        background-color: #d9d9d9 !important;
     }
     .fi-main{
         overflow: hidden !important;
@@ -18,18 +19,26 @@
     }
     
 }
+.fi-sidebar{
+    background-color: #d9d9d9 !important;
+}
 .fi-sidebar-nav{
     background-color: #06402a;
     color: antiquewhite;
+    border-radius: 50px;
 }
-
+.aside{
+    background-color: transparent !important;
+}
 
 .fi-sidebar-nav-groups > li{
     :hover {
         background-color: #06402a;
     }
 }
-
+.fi-sidebar-item{
+    margin-bottom: 28px;
+}
 .fi-sidebar-nav-groups > li .fi-sidebar-item-icon {
     color: white; /* default icon color */
 }
@@ -40,7 +49,14 @@
 .fi-sidebar-nav-groups > li .fi-sidebar-item-button:hover .fi-sidebar-item-icon {
     color: gray; /* hover text and icon color */
 }
-
+.fi-sidebar-item-label{
+    font-size: 16px !important;
+}
+.fi-sidebar-item-icon{
+    font-size: 28px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
 .fi-sidebar-item-active svg,
 .fi-sidebar-item-active span {
     color: gray !important;

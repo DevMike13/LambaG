@@ -39,8 +39,8 @@ class PondguardAdminPanelProvider extends PanelProvider
             ->passwordReset()
             ->emailVerification()
             ->profile()
-            ->brandLogo(asset('images/lambag-logo.jpg'))
-            // ->brandLogoHeight('5em')
+            ->brandLogo(asset('images/lambag-logo.png'))
+            ->brandLogoHeight('3em')
             ->favicon(asset('favicon.ico'))
             ->colors([
                 'primary' => '#0d4530',
