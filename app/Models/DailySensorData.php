@@ -10,13 +10,13 @@ class DailySensorData extends Model
     use HasFactory;
 
     protected $fillable = [
-        'cycle_id',
-        'board',
-        'soil_moisture', 
-        'soil_ph',
-        'water_ph',
         'temperature',
         'humidity',
+        'liquid_temp', 
+        'alcohol',
+        'pH_level',
+        'brix',
+        'liquid_level',
         'reading_date'
     ];
 }

@@ -22,9 +22,17 @@
 >
     <div class="p-4 flex justify-between items-center border-b">
         <h2 class="text-lg font-semibold">Notifications</h2>
-        <button @click="open = false">
-            <x-heroicon-o-x-mark class="w-5 h-5" />
-        </button>
+        <div class="flex items-center gap-2">
+            <button 
+                wire:click="clearAll" 
+                class="text-xs text-red-600 hover:underline"
+            >
+                Clear All
+            </button>
+            <button @click="open = false">
+                <x-heroicon-o-x-mark class="w-5 h-5" />
+            </button>
+        </div>
     </div>
     <div class="p-4 space-y-3 overflow-y-auto h-[calc(100%-64px)]">
         @forelse ($notifications as $notification)

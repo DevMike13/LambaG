@@ -21,250 +21,154 @@ class DailyReport extends Component
     public $brixData=[];
     public $liquidLevelData=[];
     
-    
-    #[Url(as: 'start')]
-    public ?string $startDate = null;
-
-    #[Url(as: 'end')]
-    public ?string $endDate = null;
+    #[Url(as: 'date')]
+    public ?string $filterDate = null;
 
     public function mount(){
-        $this->startDate ??= Carbon::now()->startOfMonth()->toDateString();
-        $this->endDate ??= Carbon::now()->endOfMonth()->toDateString();
-        
-        $this->getTemperatureForCurrentMonth($this->startDate, $this->endDate);
-        $this->getHumidityForCurrentMonth($this->startDate, $this->endDate);
+        $this->filterDate ??= Carbon::now('Asia/Manila')->toDateString();
 
-        $this->getLiquidTempForCurrentMonth($this->startDate, $this->endDate);
-        $this->getAlcoholForCurrentMonth($this->startDate, $this->endDate);
-        $this->getpHLevelForCurrentMonth($this->startDate, $this->endDate);
-        $this->getBrixForCurrentMonth($this->startDate, $this->endDate);
-        $this->getLiquidLevelForCurrentMonth($this->startDate, $this->endDate);
+        $this->getTemperatureForCurrentMonth($this->filterDate);
+        $this->getHumidityForCurrentMonth($this->filterDate);
+
+        $this->getLiquidTempForCurrentMonth($this->filterDate);
+        $this->getAlcoholForCurrentMonth($this->filterDate);
+        $this->getpHLevelForCurrentMonth($this->filterDate);
+        $this->getBrixForCurrentMonth($this->filterDate);
+        $this->getLiquidLevelForCurrentMonth($this->filterDate);
         
     }
 
-    public function getTemperatureForCurrentMonth($startDate = null, $endDate = null)
+    public function getTemperatureForCurrentMonth($filterDate = null)
     {
-        $startOfRange = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
-        $endOfRange = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        $filterDate = $filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $tempData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%b, %d") as Day, temperature as Value')
-            ->whereBetween(DB::raw('DATE(reading_date)'), [
-                $startOfRange->toDateString(),
-                $endOfRange->toDateString()
-            ])
-            ->whereIn('id', function ($query) use ($startOfRange, $endOfRange) {
-                $query->selectRaw('MAX(id)')
-                    ->from('daily_sensor_data')
-                    ->whereBetween(DB::raw('DATE(reading_date)'), [
-                        $startOfRange->toDateString(),
-                        $endOfRange->toDateString()
-                    ])
-                    ->groupByRaw('DATE(reading_date)');
-            })
+        $tempData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%h:%i %p") as time, temperature as Value')
+            ->whereDate('reading_date', $filterDate)
             ->orderBy('reading_date')
             ->get();
 
         $this->temperatureData = $tempData->map(function ($item) {
             return [
-                'Day' => $item->Day,
+                'time' => $item->time,
                 'Value' => round($item->Value, 2)
             ];
         })->toArray();
     }
 
-    public function getHumidityForCurrentMonth($startDate = null, $endDate = null)
+    public function getHumidityForCurrentMonth($filterDate = null)
     {
-        $startOfRange = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
-        $endOfRange = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        $filterDate = $filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $humidData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%b, %d") as Day, humidity as Value')
-            ->whereBetween(DB::raw('DATE(reading_date)'), [
-                $startOfRange->toDateString(),
-                $endOfRange->toDateString()
-            ])
-            ->whereIn('id', function ($query) use ($startOfRange, $endOfRange) {
-                $query->selectRaw('MAX(id)')
-                    ->from('daily_sensor_data')
-                    ->whereBetween(DB::raw('DATE(reading_date)'), [
-                        $startOfRange->toDateString(),
-                        $endOfRange->toDateString()
-                    ])
-                    ->groupByRaw('DATE(reading_date)');
-            })
+        $humidData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%h:%i %p") as time, humidity as Value')
+            ->whereDate('reading_date', $filterDate)
             ->orderBy('reading_date')
             ->get();
 
         $this->humidityData = $humidData->map(function ($item) {
             return [
-                'Day' => $item->Day,
+                'time' => $item->time,
                 'Value' => round($item->Value, 2)
             ];
         })->toArray();
     }
 
-    public function getLiquidTempForCurrentMonth($startDate = null, $endDate = null)
+    public function getLiquidTempForCurrentMonth($filterDate = null)
     {
-        $startOfRange = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
-        $endOfRange = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        $filterDate = $filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $liquidTmpData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%b, %d") as Day, liquid_temp as Value')
-            ->whereBetween(DB::raw('DATE(reading_date)'), [
-                $startOfRange->toDateString(),
-                $endOfRange->toDateString()
-            ])
-            ->whereIn('id', function ($query) use ($startOfRange, $endOfRange) {
-                $query->selectRaw('MAX(id)')
-                    ->from('daily_sensor_data')
-                    ->whereBetween(DB::raw('DATE(reading_date)'), [
-                        $startOfRange->toDateString(),
-                        $endOfRange->toDateString()
-                    ])
-                    ->groupByRaw('DATE(reading_date)');
-            })
+        $liquidTmpData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%h:%i %p") as time, liquid_temp as Value')
+            ->whereDate('reading_date', $filterDate)
             ->orderBy('reading_date')
             ->get();
 
         $this->liquidTempData = $liquidTmpData->map(function ($item) {
             return [
-                'Day' => $item->Day,
+                'time' => $item->time,
                 'Value' => round($item->Value, 2)
             ];
         })->toArray();
     }
 
-    public function getAlcoholForCurrentMonth($startDate = null, $endDate = null)
+    public function getAlcoholForCurrentMonth($filterDate = null)
     {
-        $startOfRange = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
-        $endOfRange = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        $filterDate = $filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $alcData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%b, %d") as Day, alcohol as Value')
-            ->whereBetween(DB::raw('DATE(reading_date)'), [
-                $startOfRange->toDateString(),
-                $endOfRange->toDateString()
-            ])
-            ->whereIn('id', function ($query) use ($startOfRange, $endOfRange) {
-                $query->selectRaw('MAX(id)')
-                    ->from('daily_sensor_data')
-                    ->whereBetween(DB::raw('DATE(reading_date)'), [
-                        $startOfRange->toDateString(),
-                        $endOfRange->toDateString()
-                    ])
-                    ->groupByRaw('DATE(reading_date)');
-            })
+        $alcData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%h:%i %p") as time, alcohol as Value')
+            ->whereDate('reading_date', $filterDate)
             ->orderBy('reading_date')
             ->get();
 
         $this->alcoholData = $alcData->map(function ($item) {
             return [
-                'Day' => $item->Day,
+                'time' => $item->time,
                 'Value' => round($item->Value, 2)
             ];
         })->toArray();
     }
 
-    public function getpHLevelForCurrentMonth($startDate = null, $endDate = null)
+    public function getpHLevelForCurrentMonth($filterDate = null)
     {
-        $startOfRange = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
-        $endOfRange = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        $filterDate = $filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $pHlvlData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%b, %d") as Day, pH_level as Value')
-            ->whereBetween(DB::raw('DATE(reading_date)'), [
-                $startOfRange->toDateString(),
-                $endOfRange->toDateString()
-            ])
-            ->whereIn('id', function ($query) use ($startOfRange, $endOfRange) {
-                $query->selectRaw('MAX(id)')
-                    ->from('daily_sensor_data')
-                    ->whereBetween(DB::raw('DATE(reading_date)'), [
-                        $startOfRange->toDateString(),
-                        $endOfRange->toDateString()
-                    ])
-                    ->groupByRaw('DATE(reading_date)');
-            })
+        $pHlvlData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%h:%i %p") as time, pH_level as Value')
+            ->whereDate('reading_date', $filterDate)
             ->orderBy('reading_date')
             ->get();
 
+
         $this->pHLevelData = $pHlvlData->map(function ($item) {
             return [
-                'Day' => $item->Day,
+                'time' => $item->time,
                 'Value' => round($item->Value, 2)
             ];
         })->toArray();
     }
 
-    public function getBrixForCurrentMonth($startDate = null, $endDate = null)
+    public function getBrixForCurrentMonth($filterDate = null)
     {
-        $startOfRange = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
-        $endOfRange = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        $filterDate = $filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $brxData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%b, %d") as Day, brix as Value')
-            ->whereBetween(DB::raw('DATE(reading_date)'), [
-                $startOfRange->toDateString(),
-                $endOfRange->toDateString()
-            ])
-            ->whereIn('id', function ($query) use ($startOfRange, $endOfRange) {
-                $query->selectRaw('MAX(id)')
-                    ->from('daily_sensor_data')
-                    ->whereBetween(DB::raw('DATE(reading_date)'), [
-                        $startOfRange->toDateString(),
-                        $endOfRange->toDateString()
-                    ])
-                    ->groupByRaw('DATE(reading_date)');
-            })
+        $brxData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%h:%i %p") as time, brix as Value')
+            ->whereDate('reading_date', $filterDate)
             ->orderBy('reading_date')
             ->get();
 
         $this->brixData = $brxData->map(function ($item) {
             return [
-                'Day' => $item->Day,
+                'time' => $item->time,
                 'Value' => round($item->Value, 2)
             ];
         })->toArray();
     }
 
-    public function getLiquidLevelForCurrentMonth($startDate = null, $endDate = null)
+    public function getLiquidLevelForCurrentMonth($filterDate = null)
     {
-        $startOfRange = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
-        $endOfRange = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        $filterDate = $filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $liquidLvlData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%b, %d") as Day, liquid_level as Value')
-            ->whereBetween(DB::raw('DATE(reading_date)'), [
-                $startOfRange->toDateString(),
-                $endOfRange->toDateString()
-            ])
-            ->whereIn('id', function ($query) use ($startOfRange, $endOfRange) {
-                $query->selectRaw('MAX(id)')
-                    ->from('daily_sensor_data')
-                    ->whereBetween(DB::raw('DATE(reading_date)'), [
-                        $startOfRange->toDateString(),
-                        $endOfRange->toDateString()
-                    ])
-                    ->groupByRaw('DATE(reading_date)');
-            })
+        $liquidLvlData = DailySensorData::selectRaw('DATE_FORMAT(reading_date, "%h:%i %p") as time, liquid_level as Value')
+            ->whereDate('reading_date', $filterDate)
             ->orderBy('reading_date')
             ->get();
 
         $this->liquidLevelData = $liquidLvlData->map(function ($item) {
             return [
-                'Day' => $item->Day,
+                'time' => $item->time,
                 'Value' => round($item->Value, 2)
             ];
         })->toArray();
     }
 
     public function getGraphValues(){
-        $start = $this->startDate ?? Carbon::now()->startOfMonth();
-        $end = $this->endDate ?? Carbon::now()->endOfMonth();
+        $date = $this->filterDate ?? Carbon::now('Asia/Manila')->toDateString();
 
-        $this->getTemperatureForCurrentMonth($start, $end);
-        $this->getHumidityForCurrentMonth($start, $end);
+        $this->getTemperatureForCurrentMonth($date);
+        $this->getHumidityForCurrentMonth($date);
 
-        $this->getLiquidTempForCurrentMonth($start, $end);
-        $this->getAlcoholForCurrentMonth($start, $end);
-        $this->getpHLevelForCurrentMonth($start, $end);
-        $this->getBrixForCurrentMonth($start, $end);
-        $this->getLiquidLevelForCurrentMonth($start, $end);
+        $this->getLiquidTempForCurrentMonth($date);
+        $this->getAlcoholForCurrentMonth($date);
+        $this->getpHLevelForCurrentMonth($date);
+        $this->getBrixForCurrentMonth($date);
+        $this->getLiquidLevelForCurrentMonth($date);
        
         $this->dispatch('updateTemperatureChart', $this->temperatureData);
         $this->dispatch('updateHumidityChart', $this->humidityData);

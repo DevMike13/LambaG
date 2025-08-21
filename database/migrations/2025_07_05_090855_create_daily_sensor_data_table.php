@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('pH_level', 6, 2);
             $table->decimal('brix', 6, 2);
             $table->decimal('liquid_level', 6, 2);
-            $table->date('reading_date');
+            $table->timestamp('reading_date');
             $table->timestamps();
         });
     }

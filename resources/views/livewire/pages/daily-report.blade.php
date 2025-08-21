@@ -2,18 +2,9 @@
    <div class="flex flex-col lg:flex-row justify-center items-center gap-3 mb-3">
         <div class="w-[90%] lg:w-auto flex gap-3 justify-center">
             <x-datetime-picker
-                label="Start Date"
-                placeholder="Start Date"
-                wire:model.defer="startDate"
-                without-time
-                parse-format="YYYY-MM-DD"
-                display-format="MMMM DD, YYYY"
-            />
-
-            <x-datetime-picker
-                label="End Date"
-                placeholder="End Date"
-                wire:model.defer="endDate"
+                label="Filter Date"
+                placeholder="Filter Date"
+                wire:model.defer="filterDate"
                 without-time
                 parse-format="YYYY-MM-DD"
                 display-format="MMMM DD, YYYY"
@@ -119,13 +110,13 @@
         console.log(temperatureData);
         
         const ctx = document.getElementById('temperatureChart');
-        const days = temperatureData.map(item => item.Day);
+        const time = temperatureData.map(item => item.time);
         const values = temperatureData.map(item => item.Value);
         
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: days,
+                labels: time,
                 datasets: [{
                     label: 'Temperature',
                     data: values, 
@@ -156,13 +147,13 @@
         console.log(humidityData);
         
         const ctxHumid = document.getElementById('humidityChart');
-        const daysHumid = humidityData.map(item => item.Day);
+        const timeHumid = humidityData.map(item => item.time);
         const valuesHumid = humidityData.map(item => item.Value);
         
         new Chart(ctxHumid, {
             type: 'line',
             data: {
-                labels: daysHumid,
+                labels: timeHumid,
                 datasets: [{
                     label: 'Humidity',
                     data: valuesHumid, 
@@ -193,13 +184,13 @@
         console.log(liquidTempData);
         
         const ctxLiquidTemp = document.getElementById('liquidTemperatureChart');
-        const daysLiquidTemp = liquidTempData.map(item => item.Day);
+        const timeLiquidTemp = liquidTempData.map(item => item.time);
         const valuesLiquidTemp = liquidTempData.map(item => item.Value);
         
         new Chart(ctxLiquidTemp, {
             type: 'line',
             data: {
-                labels: daysLiquidTemp,
+                labels: timeLiquidTemp,
                 datasets: [{
                     label: 'Liquid Temperature',
                     data: valuesLiquidTemp, 
@@ -230,13 +221,13 @@
         console.log(alcoholData);
         
         const ctxAlc = document.getElementById('alcoholChart');
-        const daysAlc = alcoholData.map(item => item.Day);
+        const timeAlc = alcoholData.map(item => item.time);
         const valuesAlc = alcoholData.map(item => item.Value);
         
         new Chart(ctxAlc, {
             type: 'line',
             data: {
-                labels: daysAlc,
+                labels: timeAlc,
                 datasets: [{
                     label: 'Alcohol',
                     data: valuesAlc, 
@@ -267,13 +258,13 @@
         console.log(pHLevelData);
         
         const ctxpHlvl = document.getElementById('pHLevelChart');
-        const dayspHlvl = pHLevelData.map(item => item.Day);
+        const timepHlvl = pHLevelData.map(item => item.time);
         const valuespHlvl = pHLevelData.map(item => item.Value);
         
         new Chart(ctxpHlvl, {
             type: 'line',
             data: {
-                labels: dayspHlvl,
+                labels: timepHlvl,
                 datasets: [{
                     label: 'pH Level',
                     data: valuespHlvl, 
@@ -304,13 +295,13 @@
         console.log(brixData);
         
         const ctxBrix = document.getElementById('brixChart');
-        const daysBrix = brixData.map(item => item.Day);
+        const timeBrix = brixData.map(item => item.time);
         const valuesBrix = brixData.map(item => item.Value);
         
         new Chart(ctxBrix, {
             type: 'line',
             data: {
-                labels: daysBrix,
+                labels: timeBrix,
                 datasets: [{
                     label: 'Brix',
                     data: valuesBrix, 
@@ -341,13 +332,13 @@
         console.log(liquidLevelData);
         
         const ctxLiquidLevel = document.getElementById('liquidLevelChart');
-        const daysLiquidLevel = liquidLevelData.map(item => item.Day);
+        const timeLiquidLevel = liquidLevelData.map(item => item.time);
         const valuesLiquidLevel = liquidLevelData.map(item => item.Value);
         
         new Chart(ctxLiquidLevel, {
             type: 'line',
             data: {
-                labels: daysLiquidLevel,
+                labels: timeLiquidLevel,
                 datasets: [{
                     label: 'Liquid Level',
                     data: valuesLiquidLevel, 

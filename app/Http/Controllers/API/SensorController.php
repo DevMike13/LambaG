@@ -44,13 +44,13 @@ class SensorController extends Controller
         try {
             // Validate the request
             $validatedData = $request->validate([
-                'cycle_id' => 'required',
-                'board' => 'required',
-                'soil_moisture' => 'required',
-                'soil_ph' => 'required',
-                'water_ph' => 'required',
                 'temperature' => 'required',
                 'humidity' => 'required',
+                'liquid_temp' => 'required',
+                'alcohol' => 'required',
+                'pH_level' => 'required',
+                'brix' => 'required',
+                'liquid_level' => 'required',
                 'reading_date' => 'required|date',
             ]);
     
