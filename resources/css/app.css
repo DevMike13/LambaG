@@ -8,3 +8,149 @@
         font-family: 'Poppins', sans-serif;
     }
 }
+@layer components {
+    .droplet {
+        @apply absolute top-[-12px] w-[8px] h-[12px] bg-blue-400/70 animate-fall;
+        clip-path: path('M4,12 C8,12 8,4 4,0 C0,4 0,12 4,12 Z');
+    }
+      
+      
+
+    /* TEMP */
+    .heat-line {
+        @apply absolute bottom-0 w-[2px] h-[40px] bg-orange-400/60;
+        /* top: 100%; */
+        border-radius: 9999px;
+        animation: rise 3s linear infinite;
+    }
+    
+    @keyframes rise {
+        0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+        10%  { opacity: 1; }
+        50%  { transform: translateY(-60px) scaleX(1.2); }
+        100% { transform: translateY(-120px) scaleX(1); opacity: 0; }
+    }
+
+    /* ALCOHOL BUBBLES */
+    .bubble {
+        @apply absolute w-[6px] h-[6px] bg-blue-300/70 rounded-full;
+        bottom: 0;
+        animation: rise-bubble 4s linear infinite;
+    }
+
+    @keyframes rise-bubble {
+        0%   { transform: translateY(0) scale(0.5); opacity: 0; }
+        20%  { opacity: 1; }
+        50%  { transform: translateY(-60px) scale(1); }
+        80%  { opacity: 0.8; }
+        100% { transform: translateY(-120px) scale(0.8); opacity: 0; }
+    }
+
+    /* LIQUID TEMP */
+    .heatwave {
+        @apply absolute bottom-0 w-[2px] h-[40px] bg-blue-300/40;
+        animation: rise 3s infinite ease-in-out;
+        border-radius: 9999px;
+    }
+    
+    @keyframes rise {
+        0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+        30%  { opacity: 0.8; }
+        50%  { transform: translateY(-20px) scaleX(1.3); }
+        100% { transform: translateY(-40px) scaleX(0.8); opacity: 0; }
+    }
+
+    /* PH */
+
+    .animate-ph {
+        background: linear-gradient(-45deg, #ff4d4d, #4dff4d, #4d4dff, #ff4d4d);
+        background-size: 400% 400%;
+        animation: phGradient 10s ease infinite;
+        opacity: 0.3;
+    }
+    
+    @keyframes phGradient {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* BRIX */
+
+    .sparkle {
+        @apply absolute w-[6px] h-[6px] bg-yellow-300 rounded-full opacity-70;
+        animation: sparkleFloat 3s infinite ease-in-out;
+    }
+    
+    @keyframes sparkleFloat {
+        0% {
+          transform: scale(0.5) translateY(0);
+          opacity: 0.3;
+        }
+        50% {
+          transform: scale(1.2) translateY(-10px);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0.5) translateY(-20px);
+          opacity: 0;
+        }
+    }
+
+
+    /* LIQUID LEVEL */
+    .waveContainer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        height: var(--level, 0%); /* fallback 0% */
+      }
+      
+      .w1 {
+        stroke: none;
+        fill: #3b82f6; /* Tailwind blue-500 */
+        opacity: 0.55;
+        animation: move1 5s ease-in-out infinite;
+      }
+      .w2 {
+        stroke: none;
+        fill: #3b82f6;
+        opacity: 0.35;
+        animation: move2 4s ease-in-out infinite;
+      }
+      .w3 {
+        stroke: none;
+        fill: #2563eb; /* Tailwind blue-600 */
+        opacity: 0.3;
+        animation: move3 6s ease-in-out infinite;
+      }
+      
+      @keyframes move1 {
+        0%   { transform: translateX(-500px) scaleX(2.5); }
+        50%  { transform: translateX(0) scaleX(2.5); }
+        100% { transform: translateX(-500px) scaleX(2.5); }
+      }
+      @keyframes move2 {
+        0%   { transform: translateX(-600px) scaleX(3); }
+        50%  { transform: translateX(0) scaleX(3); }
+        100% { transform: translateX(-600px) scaleX(3); }
+      }
+      @keyframes move3 {
+        0%   { transform: translateX(-800px) scaleX(3); }
+        50%  { transform: translateX(0) scaleX(3); }
+        100% { transform: translateX(-800px) scaleX(3); }
+      }
+          
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

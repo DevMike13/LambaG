@@ -16,11 +16,17 @@ module.exports = {
           '0%': { transform: 'translate(-90px, 0%)' },
           '100%': { transform: 'translate(85px, 0%)' },
         },
+        fall: {
+          '0%': { top: '-20px', opacity: '0', transform: 'translateX(0)' },
+          '10%': { opacity: '1' },
+          '100%': { top: '100%', opacity: '0', transform: 'translateX(5px)' },
+        },
       },
       animation: {
         'move-forever': 'move-forever 2s linear infinite',
         'move-slow': 'move-forever 6s linear infinite',
         'move-fast': 'move-forever 3s linear infinite',
+        fall: 'fall 3s linear infinite',
       },
     },
   },
