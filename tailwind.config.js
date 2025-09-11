@@ -28,6 +28,9 @@ module.exports = {
         'move-fast': 'move-forever 3s linear infinite',
         fall: 'fall 3s linear infinite',
       },
+      listStyleType: {
+        square: 'square', // 👈 custom utility
+      },
     },
   },
   presets: [

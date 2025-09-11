@@ -24,7 +24,8 @@ class User extends Authenticatable implements FilamentUser
         'email',
         'password',
         'role',
-        'status'
+        'status',
+        'is_approved',
     ];
 
     /**
@@ -49,6 +50,7 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->status === 'Active';
+        // return true;
     }
 
     // public function canAccessPanel(Panel $panel): bool

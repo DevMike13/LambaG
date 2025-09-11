@@ -9,6 +9,10 @@
     }
 }
 @layer components {
+    .list-square {
+      list-style-type: square;
+    }
+  
     .droplet {
         @apply absolute top-[-12px] w-[8px] h-[12px] bg-blue-400/70 animate-fall;
         clip-path: path('M4,12 C8,12 8,4 4,0 C0,4 0,12 4,12 Z');

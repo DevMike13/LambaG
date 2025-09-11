@@ -4,10 +4,14 @@
             <div class="w-16 h-24 flex mx-auto lg:hidden">
                 <img src="{{ asset('/images/lambag-logo.png') }}" alt="logo" class="w-full h-auto">
             </div>
-            <h1 class="font-bold text-4xl text-white text-center lg:text-left">CAPISTRANO DISTILLERY</h1>
-            <h2 class="font-semibold text-xl text-white text-center lg:text-left">LAMBAG</h2>
+            <h1 class="font-bold text-4xl md:text-6xl text-white text-center lg:text-left">LAMBAG</h1>
+            {{-- <h2 class="font-semibold text-xl text-white text-center lg:text-left">LAMBAG</h2> --}}
             <p class="text-white text-center lg:text-left">An IoT Web-based System for Real-Time Fermentation Monitoring and Alcohol Level Analysis with SMS Notification for Lambanog Production at Capistrano Distillery</p>
-            
+            <a href="{{ route('lambag.about') }}" class="mx-auto md:mx-0">
+                <button type="button" class="py-2 px-8 uppercase rounded-full flex justify-center items-center text-sm font-medium text-white shadow-sm bg-[#254e24] hover:bg-[#c0dac1] disabled:opacity-50 disabled:pointer-events-none">
+                   ABOUT
+                </button>
+            </a>
         </div>
         <div class="w-full lg:w-[40%] h-full flex flex-col justify-between items-center py-10 bg-[#6e8c80] lg:bg-[#d9d9d9]">
             <div class="w-16 h-24 hidden lg:flex">

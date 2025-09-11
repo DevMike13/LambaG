@@ -65,6 +65,7 @@ class PondguardAdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \App\Http\Middleware\EnsureUserIsApproved::class,
             ])
             // ->plugin(
                 // FilamentSocialitePlugin::make()
@@ -92,6 +93,7 @@ class PondguardAdminPanelProvider extends PanelProvider
             // )
             ->authMiddleware([
                 Authenticate::class,
+                \App\Http\Middleware\EnsureUserIsApproved::class,
             ]);
     }
 }
