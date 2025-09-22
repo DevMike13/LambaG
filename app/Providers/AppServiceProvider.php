@@ -23,6 +23,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // FilamentView::registerRenderHook(
+        //     PanelsRenderHook::BODY_END,
+        //     fn (): string => Blade::render('<livewire:filament.toast-notification />')
+        // );
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::BODY_END,
+            fn (): string => auth()->check()
+                ? Blade::render('<livewire:filament.toast-notification />')
+                : ''
+        );
+        
         FilamentView::registerRenderHook(
             PanelsRenderHook::BODY_END,
             fn (): string => Blade::render('<livewire:filament.custom-notification />')
