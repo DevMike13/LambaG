@@ -1,7 +1,7 @@
 <div class="w-full h-svh flex justify-center items-center">
     <div class="max-w-lg lg:min-w-lg mx-auto mt-10 shadow-lg p-10 rounded-xl">
         
-        <img src="{{ asset('images/lambag-logo.png') }}" alt="" class="h-4 w-auto mx-auto mb-5">
+        <img src="{{ asset('images/lambag-logo.png') }}" alt="" class="h-16 w-auto mx-auto mb-5">
         
         <h2 class="text-lg font-bold text-center mb-5">Verify Your Account</h2>
 
@@ -15,7 +15,7 @@
             <button type="submit"
                 wire:target="sendOTP"
                 wire:loading.attr="disabled"
-                class="w-full mx-auto px-4 py-2 bg-green-500 text-white rounded-full flex items-center justify-center text-sm">
+                class="w-full mx-auto px-4 py-2 bg-[#4071f4] text-white rounded-full flex items-center justify-center text-sm">
 
                 {{-- Show only when not loading --}}
                 <span wire:loading.remove wire:target="sendOTP">

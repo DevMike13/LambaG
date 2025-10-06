@@ -6,7 +6,7 @@ use Filament\Pages\Page;
 
 class Personnel extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     protected static string $view = 'filament.pages.personnel';
 

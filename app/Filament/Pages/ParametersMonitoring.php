@@ -6,7 +6,7 @@ use Filament\Pages\Page;
 
 class ParametersMonitoring extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
+    protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-line';
 
     protected static string $view = 'filament.pages.parameters-monitoring';
 
