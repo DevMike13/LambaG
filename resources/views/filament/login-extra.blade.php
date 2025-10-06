@@ -16,10 +16,14 @@
       <img src="{{ asset('images/pana.png') }}" alt="" class="left-illustration-registration illustration-image">
   @else
     <div class="left-illustration-login illustration-image">
-        <h1 class="login-heading">CAPISTRANO DISTILLERY</h1>
-        <h2 class="login-subheading">LAMBAG</h2>
-        <p>An IoT Web-based System for Real-Time Fermentation Monitoring and Alcohol Level Analysis with SMS Notification for Lambanog Production at Capistrano Distillery</p>
-    </div>
+        <h1 class="login-heading">LAMBAG</h1>
+        <p class="says">An IoT Web-based System for Real-Time Fermentation Monitoring and Alcohol Level Analysis with SMS Notification for Lambanog Production at Capistrano Distillery</p>
+          <a href="{{ route('lambag.about') }}" >
+            <button type="button" class="about-button">
+              ABOUT
+            </button>
+          </a>
+      </div>
   @endif
 
   {{-- @for ($i = 0; $i < 50; $i++)
@@ -42,7 +46,7 @@
 body {
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(0deg, #e5e7eb 0%, rgba(229, 231, 235, 0) 100%) !important;
+    background: linear-gradient(0deg, #ffffff 0%, #ffffff 100%) !important;
     position: relative;
 }
 
@@ -65,11 +69,22 @@ body {
     .login-heading{
       font-size: 48px;
       font-weight: 700;
+      color: #797979;
     }
     .login-subheading{
       font-size: 30px;
       font-weight: 700;
       margin-top: 50px;
+    }
+    .says{
+      color: #797979;
+    }
+    .about-button{
+      background-color: #4071f4;
+      color: white;
+      padding: 5px 20px;
+      border-radius: 30px;
+      margin-top: 10px;
     }
     .illustration-wrapper {
         position: fixed;
@@ -113,7 +128,7 @@ body {
 }
   
 .fi-simple-main{
-  background-color: #6e8c80;
+  background-color: #ffffff;
 }
 
 .bubble {

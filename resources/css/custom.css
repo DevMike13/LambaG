@@ -23,32 +23,33 @@
     background-color: #d9d9d9 !important;
 }
 .fi-sidebar-nav{
-    background-color: #06402a;
-    color: antiquewhite;
-    border-radius: 50px;
+    background-color: #ffffff;
+    /* background-color: #06402a; */
+    /* color: antiquewhite; */
+    /* border-radius: 20px; */
 }
 .aside{
     background-color: transparent !important;
 }
 
-.fi-sidebar-nav-groups > li{
+/* .fi-sidebar-nav-groups > li{
     :hover {
         background-color: #06402a;
     }
-}
+} */
 .fi-sidebar-item{
     margin-bottom: 15px;
 }
-.fi-sidebar-nav-groups > li .fi-sidebar-item-icon {
-    color: white; /* default icon color */
+/* .fi-sidebar-nav-groups > li .fi-sidebar-item-icon {
+    color: white;
 }
 .fi-sidebar-nav-groups > li .fi-sidebar-item-label {
-    color: white; /* default text color */
+    color: white; 
 }
 .fi-sidebar-nav-groups > li .fi-sidebar-item-button:hover .fi-sidebar-item-label,
 .fi-sidebar-nav-groups > li .fi-sidebar-item-button:hover .fi-sidebar-item-icon {
-    color: gray; /* hover text and icon color */
-}
+    color: gray; 
+} */
 .fi-sidebar-item-label{
     font-size: 14px !important;
 }
@@ -57,15 +58,15 @@
     width: 30px !important;
     height: 30px !important;
 }
-.fi-sidebar-item-active svg,
+/* .fi-sidebar-item-active svg,
 .fi-sidebar-item-active span {
-    color: gray !important;
-}
+    color: white !important;
+} */
 
-.fi-sidebar-item-active {
+/* .fi-sidebar-item-active {
     position: relative;
-}
-
+} */
+/* 
 .fi-sidebar-item-active::after {
     content: '';
     position: absolute;
@@ -79,21 +80,26 @@
     border-right: 14px solid transparent;
     border-top: 14px solid #d9d9d9; 
     z-index: 30;
-}
+} */
 
 
 .fi-sidebar-item-active > a { 
-    @apply bg-transparent;
+    @apply bg-[#4071f4];
 
-   & > svg, span {
-       @apply text-white;
-   }
+    & > svg,
+    & > span {
+        @apply text-white;
+    }
 
-   &:hover {
-       @apply bg-transparent;
-       @apply text-[#808080];
-   }
-} 
+    &:hover {
+        @apply bg-[#4071f4];
+
+        & > svg,
+        & > span {
+            @apply text-gray-300;
+        }
+    }
+}
 
 .calendar-navigation{
    margin-left: 10px;

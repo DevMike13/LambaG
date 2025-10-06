@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Auth\NotVerify;
+use App\Livewire\Auth\OtpVerify;
 use App\Livewire\HomePage;
 use App\Livewire\Notify\NotAcceptedPage;
 use App\Livewire\Pages\AboutPage;
@@ -17,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', HomePage::class)->name('home');
+Route::get('/verify-account', NotVerify::class)->name('verify.account');
+Route::get('/verify-otp', OtpVerify::class)->name('otp.verify');
 Route::get('/not-accepted', NotAcceptedPage::class)
     ->name('notify.not-accepted');
 Route::get('/about', AboutPage::class)

@@ -27,12 +27,22 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
         x-transition:leave-end="opacity-0 translate-y-4 scale-95"
-        class="text-white px-6 py-3 rounded-lg shadow-lg text-lg flex flex-col items-center"
+        class="text-white px-6 py-3 rounded-lg shadow-lg text-lg flex flex-col items-center relative"
         :style="{
             backgroundColor: type === 'error' ? '#b91c1c' : '#06402a'
         }"
     >
-        <div class="flex items-center space-x-10 gap-7">
+        <!-- Close button -->
+        <button 
+            @click="show = false" 
+            class="absolute top-2 right-2 text-white hover:text-gray-200 focus:outline-none"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <div class="flex items-center space-x-2 gap-2 px-8">
             <!-- Success Icon -->
             <template x-if="type === 'success'">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -53,6 +63,7 @@
         <span class="text-sm text-gray-200 mt-1">Closing in <span x-text="countdown"></span>s</span>
     </div>
 </div>
+
 
 
 <script type="module">

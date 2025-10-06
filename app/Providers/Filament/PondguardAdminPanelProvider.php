@@ -43,7 +43,7 @@ class PondguardAdminPanelProvider extends PanelProvider
             ->brandLogoHeight('3em')
             ->favicon(asset('favicon.ico'))
             ->colors([
-                'primary' => '#0d4530',
+                'primary' => '#4071f4',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -63,7 +63,7 @@ class PondguardAdminPanelProvider extends PanelProvider
                 ShareErrorsFromSession::class,
                 VerifyCsrfToken::class,
                 SubstituteBindings::class,
-                DisableBladeIconComponents::class,
+                DisableBladeIconComponents::class, 
                 DispatchServingFilamentEvent::class,
                 \App\Http\Middleware\EnsureUserIsApproved::class,
             ])

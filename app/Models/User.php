@@ -25,6 +25,10 @@ class User extends Authenticatable implements FilamentUser
         'password',
         'role',
         'status',
+        'otp_code',
+        'email_verified_at',
+        'otp_expires_at',
+        'otp_verified_at',
         'is_approved',
     ];
 
@@ -49,8 +53,15 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->status === 'Active';
-        // return true;
+        if (is_null($this->email_verified_at)) {
+            return false;
+        }
+    
+        if ($this->status !== 'Active') {
+            return false;
+        }
+
+        return true;
     }
 
     // public function canAccessPanel(Panel $panel): bool
