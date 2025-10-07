@@ -2,11 +2,11 @@
     <div class="flex flex-col justify-center items-center w-full lg:max-w-[90%] py-16">
         <h1 class="font-bold">ABOUT US</h1>
         <div class="flex flex-col lg:flex-row justify-between items-center mt-14 gap-8 px-5 lg:px-0">
-            <img src="{{ asset('/images/distillery.png') }}" alt="" class="lg:max-w-[350px] w-full">
+            <img src="{{ asset('/images/about-2.png') }}" alt="" class="lg:max-w-[350px] w-full">
             <p>Welcome to LambaG, a web-based IoT fermentation monitoring and automated regulation system designed for Lambanog production at Capistrano Distillery. The system integrates sensors, automation, and real-time data visualization to improve the accuracy, efficiency, and safety of traditional fermentation practices. With LambaG, key parameters such as pH level, alcohol vapor concentration, liquid temperature, ambient temperature and humidity, sugar content (°Bx), and liquid level are monitored and regulated, ensuring consistent quality in every batch. Capistrano Distillery, founded in 1983 by Ireneo A. Capistrano, a chemical engineer, has been producing authentic Lambanog for decades. Known for its dedication to tradition and quality, the distillery has become one of the most recognized names in Quezon. In 2024, Quezon Lambanog, represented by distilleries such as Capistrano, was named the 2nd best spirit in the world by TasteAtlas.com, bringing pride to the Philippines.</p>
         </div>
         <div class="flex flex-col lg:flex-row-reverse justify-between items-center mt-14 gap-8 px-5 lg:px-0">
-            <img src="{{ asset('/images/distillery.png') }}" alt="" class="lg:max-w-[350px] w-full">
+            <img src="{{ asset('/images/about-1.png') }}" alt="" class="lg:max-w-[350px] w-full">
             <p>The owners of Capistrano Distillery also cooperated with our team during interviews, providing valuable insights and details that guided the design and completion of the LambaG project. <br><br> This project is the result of hard work, dedication, and collaboration. Our team worked tirelessly to research, design, and develop this system, overcoming challenges to make sure it provides practical solutions for Lambanog production. The effort poured into this project reflects our commitment not only to innovation and technology but also to supporting the heritage of local distilleries. LambaG represents the merging of tradition with modern technology, showing how teamwork and perseverance can turn ideas into reality.</p>
         </div>
         <div class="flex flex-col-reverse lg:flex-row mt-14 w-full relative px-5 lg:px-0">
