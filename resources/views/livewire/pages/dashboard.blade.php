@@ -3,13 +3,13 @@
         <div class="lg:w-[70%] w-full h-full mr-5">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5 ">
             {{-- HUMIDITY --}}
-                <x-card class="relative overflow-hidden aspect-square rounded-2xl">
-                    <div class="absolute inset-0 pointer-events-none overflow-hidden droplets">
+                {{-- <x-card class="relative overflow-hidden aspect-square rounded-2xl">
+                    <div class="absolute inset-0 pointer-events-none overflow-hidden droplets"> --}}
                     {{-- @for ($i = 0; $i < 15; $i++)
                         <span class="droplet"
                             style="left: {{ rand(0,100) }}%; animation-delay: {{ rand(0,3000) }}ms;"></span>
                     @endfor --}}
-                    </div>
+                    {{-- </div>
                     <div class="p-2 relative z-10 flex flex-col justify-center items-center h-full">
                         <div class="flex justify-center items-center gap-3">
                             <img src="{{ asset('/images/humid.png') }}" alt="" class="w-6 h-6">
@@ -18,7 +18,28 @@
                         
                         <p class="font-bold text-2xl mt-3">{{number_format($humidityData, 2, '.', ',')}} %</p>
                     </div>
+                </x-card> --}}
+
+                <x-card class="relative overflow-hidden aspect-square rounded-2xl">
+                    <div class="absolute inset-0 pointer-events-none overflow-hidden droplets">
+                        {{-- droplets here --}}
+                    </div>
+                
+                    <div class="p-2 relative z-10 flex flex-col justify-center items-center h-full">
+                        <div class="flex justify-center items-center gap-3">
+                            <img src="{{ asset('/images/humid.png') }}" alt="" class="w-6 h-6">
+                            <h3 class="text-md font-regular">Humidity</h3>
+                        </div>
+                
+                        <p class="font-bold text-2xl mt-3">{{ number_format($humidityData, 2, '.', ',') }} %</p>
+                    </div>
+                
+                    <!-- 🌊 Wave at bottom -->
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-[80%] h-16 overflow-hidden leading-none">
+                        <div class="wave"></div>
+                    </div>
                 </x-card>
+                
                 
                 {{-- TEMPERATURE --}}
                 <x-card class="relative overflow-hidden aspect-square">
@@ -34,6 +55,10 @@
                             <h3 class="text-md font-regular">Temperature</h3>
                         </div>
                         <p class="font-bold text-2xl mt-3">{{number_format($temperatureData, 2, '.', ',')}} °C</p>
+                    </div>
+                    <!-- 🌊 Wave at bottom -->
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-[80%] h-16 overflow-hidden leading-none">
+                        <div class="wave-temp"></div>
                     </div>
                 </x-card>
                 
@@ -52,6 +77,10 @@
                         </div>
                         <p class="font-bold text-2xl mt-3">{{number_format($alcoholData, 2, '.', ',')}} %</p>
                     </div>
+                    <!-- 🌊 Wave at bottom -->
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-[80%] h-16 overflow-hidden leading-none">
+                        <div class="wave-alcohol"></div>
+                    </div>
                 </x-card>
             
                 {{-- LIQUID TEMP --}}
@@ -69,6 +98,10 @@
                         </div>
                         <p class="font-bold text-2xl mt-3">{{number_format($liquidTempData, 2, '.', ',')}} °C</p>
                     </div>
+                    <!-- 🌊 Wave at bottom -->
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-[80%] h-16 overflow-hidden leading-none">
+                        <div class="wave-liquid"></div>
+                    </div>
                 </x-card>
             
                 {{-- pH LEVEL --}}
@@ -80,6 +113,10 @@
                             <h3 class="text-md font-regular">pH Level</h3>
                         </div>
                         <p class="font-bold text-2xl mt-3">{{number_format($pHLevelData, 2, '.', ',')}}</p>
+                    </div>
+                    <!-- 🌊 Wave at bottom -->
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-[80%] h-16 overflow-hidden leading-none">
+                        <div class="wave-ph"></div>
                     </div>
                 </x-card>
             
@@ -97,6 +134,10 @@
                             <h3 class="text-md font-regular">Brix Level</h3>
                         </div>
                         <p class="font-bold text-2xl mt-3">{{number_format($brixData, 2, '.', ',')}} °Bx</p>
+                    </div>
+                    <!-- 🌊 Wave at bottom -->
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 w-[80%] h-16 overflow-hidden leading-none">
+                        <div class="wave-brix"></div>
                     </div>
                 </x-card>
         

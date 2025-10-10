@@ -9,6 +9,70 @@
     }
 }
 @layer components {
+
+    /* HUMID */
+    .wave {
+      position: relative;
+      width: 200%;
+      height: 100%; /* taller wave */
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'><path d='M0,30 C10,5 20,55 30,30 C40,20 50,40 60,30 C70,5 80,55 90,30 C100,20 110,40 120,30 V60 H0 Z' fill='rgba(59,130,246,0.5)'/></svg>") repeat-x;
+      background-size: 50% 100%;
+      animation: waveMove 6s linear infinite;
+    }
+
+    .wave-temp {
+      position: relative;
+      width: 200%;
+      height: 100%; /* taller wave */
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'><path d='M0,30 C10,5 20,55 30,30 C40,20 50,40 60,30 C70,5 80,55 90,30 C100,20 110,40 120,30 V60 H0 Z' fill='rgba(239,68,68,0.5)'/></svg>") repeat-x;
+      background-size: 50% 100%;
+      animation: waveMove 6s linear infinite;
+    }
+    
+    .wave-alcohol {
+      position: relative;
+      width: 200%;
+      height: 100%;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'><path d='M0,30 C10,5 20,55 30,30 C40,20 50,40 60,30 C70,5 80,55 90,30 C100,20 110,40 120,30 V60 H0 Z' fill='rgba(249,115,22,0.5)'/></svg>") repeat-x;
+      background-size: 50% 100%;
+      animation: waveMove 6s linear infinite;
+    }
+
+    .wave-liquid {
+      position: relative;
+      width: 200%;
+      height: 100%;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'><path d='M0,30 C10,5 20,55 30,30 C40,20 50,40 60,30 C70,5 80,55 90,30 C100,20 110,40 120,30 V60 H0 Z' fill='rgba(34,197,94,0.5)'/></svg>") repeat-x;
+      background-size: 50% 100%;
+      animation: waveMove 6s linear infinite;
+    }
+
+    .wave-ph {
+      position: relative;
+      width: 200%;
+      height: 100%;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'><path d='M0,30 C10,5 20,55 30,30 C40,20 50,40 60,30 C70,5 80,55 90,30 C100,20 110,40 120,30 V60 H0 Z' fill='rgba(139,92,246,0.5)'/></svg>") repeat-x;
+      background-size: 50% 100%;
+      animation: waveMove 6s linear infinite;
+    }
+
+    .wave-brix {
+      position: relative;
+      width: 200%;
+      height: 100%;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'><path d='M0,30 C10,5 20,55 30,30 C40,20 50,40 60,30 C70,5 80,55 90,30 C100,20 110,40 120,30 V60 H0 Z' fill='rgba(161,98,7,0.5)'/></svg>") repeat-x;
+      background-size: 50% 100%;
+      animation: waveMove 6s linear infinite;
+    }
+
+    @keyframes waveMove {
+      from { background-position-x: 0; }
+      to   { background-position-x: -50%; }
+    }
+
+
+
+
     .list-square {
       list-style-type: square;
     }
