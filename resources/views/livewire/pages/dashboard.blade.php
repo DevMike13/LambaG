@@ -1,6 +1,6 @@
 <div class="w-full h-auto">
     <div class="flex w-full lg:flex-row flex-col items-stretch">
-        <div class="lg:w-[70%] w-full h-full mr-5">
+        <div class="lg:w-[65%] w-full h-full mr-5">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5 ">
             {{-- HUMIDITY --}}
                 {{-- <x-card class="relative overflow-hidden aspect-square rounded-2xl">
@@ -144,7 +144,7 @@
             </div>
         </div>
         
-        <div class="lg:w-[30%] w-full h-full">
+        <div class="lg:w-[35%] w-full h-full">
             {{-- <x-card class="relative h-[440px] overflow-hidden rounded-lg">
                 <div class="waveContainer" style="--level: {{ floor($liquidLevelData * 2.85) }}%;">
                     <div class="waveAnimation w-full h-full">
@@ -164,8 +164,8 @@
                     <p class="font-bold text-3xl">{{number_format($liquidLevelData, 2, '.', ',')}} %</p>
                 </div>
             </x-card> --}}
-            <x-card class="relative h-[300px] flex items-center justify-center rounded-lg">
-                <div class="relative w-64 h-64">
+            <x-card class="relative h-[240px] flex items-center justify-center rounded-lg">
+                <div class="relative w-52 h-52">
                     <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
                         <!-- Background circle -->
                         <circle
@@ -197,7 +197,37 @@
                     </div>
                 </div>
             </x-card>
-            
+            <div class="w-full flex justify-center items-center gap-3 mt-3">
+                <div class="w-full lg:w-1/2 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                    <div class="bg-gray-100 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-neutral-900 dark:border-neutral-700 flex justify-between items-center">
+                        <p class="mt-1 text-xs text-gray-500 dark:text-neutral-500">
+                            GSM Config
+                        </p>
+                    </div>
+                    <div class="p-4 md:p-5">
+                        <div class="flex justify-start items-center gap-2">
+                            <div>
+                                <x-toggle left-label="SMS Alerts" wire:model.defer="isActiveSMS" lg wire:click="toggleSMS" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                    <div class="bg-gray-100 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-neutral-900 dark:border-neutral-700 flex justify-between items-center">
+                        <p class="mt-1 text-xs text-gray-500 dark:text-neutral-500">
+                            Controls
+                        </p>
+                    </div>
+                    <div class="p-4 md:p-5">
+                        <div class="flex justify-start items-center gap-2">
+                            <div>
+                                <x-toggle left-label="Buzzer Alert" wire:model.defer="isActiveBuzzer" lg wire:click="toggleBuzzer" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

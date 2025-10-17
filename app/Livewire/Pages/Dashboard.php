@@ -21,6 +21,12 @@ class Dashboard extends Component
     public $pHLevelData;
     public $liquidLevelData;
 
+    public $smsState;
+    public bool $isActiveSMS;
+
+    public $buzzerState;
+    public bool $isActiveBuzzer;
+
     protected $listeners = [
         'updateTemperature' => 'handleTemperatureUpdate',
         'updateHumidity' => 'handleHumidityUpdate',
@@ -29,6 +35,8 @@ class Dashboard extends Component
         'updateBrix' => 'handleBrixUpdate',
         'updatePHLevel' => 'handlePHLevelUpdate',
         'updateLiquidLevel' => 'handleLiquidLevelUpdate',
+        'updateSMSState' => 'handleSMSStateUpdate',
+        'updateBuzzerState' => 'handleBuzzerStateUpdate',
     ];
     
 
@@ -76,6 +84,16 @@ class Dashboard extends Component
             $snapshotLiquidLevel = $referenceLiquidLevel->getSnapshot();
             $this->liquidLevelData = $snapshotLiquidLevel->getValue();
 
+            // SMS STATE
+            $referenceSMSState = $this->database->getReference('System/SMS');
+            $snapshotSMSState = $referenceSMSState->getSnapshot();
+            $this->smsState = $snapshotSMSState->getValue();
+
+            // LIGHT STATE
+            $referenceBuzzerState = $this->database->getReference('System/Buzzer');
+            $snapshotBuzzerState = $referenceBuzzerState->getSnapshot();
+            $this->buzzerState = $snapshotBuzzerState->getValue();
+
         } catch (\Exception $e) {
             $this->temperatureData = 'Error: ' . $e->getMessage();
         }
@@ -114,6 +132,102 @@ class Dashboard extends Component
     public function handleLiquidLevelUpdate($liquidLevel)
     {
         $this->liquidLevelData = $liquidLevel;
+    }
+
+    // SYSTEM SMS
+    public function getSMSState()
+    {
+        try {
+            $reference = $this->database->getReference('System/SMS');
+            $currentData = $reference->getValue();
+
+            if ($currentData == 'ON') {
+                $this->smsState = 'ON';
+                $this->isActiveSMS = true;
+            } else {
+                $this->smsState = 'OFF';
+                $this->isActiveSMS = false;
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error retrieving status: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function toggleSMS(Database $database)
+    {
+        $this->database = $database;
+        try {
+            $reference = $this->database->getReference('System/SMS');
+            
+            $currentData = $reference->getValue();
+            
+            if ($currentData == 'OFF') {
+                $this->smsState = 'ON';
+                $this->isActiveSMS = true;
+            } else {
+                $this->smsState = 'OFF';
+                $this->isActiveSMS = false;
+            }
+
+            $reference->set($this->smsState);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error toggling status: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function handleSMSStateUpdate($smsState)
+    {
+        $this->smsState = $smsState;
+        $this->isActiveSMS = $smsState === 'ON';
+    }
+
+    // SYSTEM Buzzer
+    public function getBuzzerState()
+    {
+        try {
+            $reference = $this->database->getReference('System/Buzzer');
+            $currentData = $reference->getValue();
+
+            if ($currentData == 'ON') {
+                $this->buzzerState = 'ON';
+                $this->isActiveBuzzer = true;
+            } else {
+                $this->buzzerState = 'OFF';
+                $this->isActiveBuzzer = false;
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error retrieving status: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function toggleBuzzer(Database $database)
+    {
+        $this->database = $database;
+        try {
+            $reference = $this->database->getReference('System/Buzzer');
+            
+            $currentData = $reference->getValue();
+            
+            if ($currentData == 'OFF') {
+                $this->buzzerState = 'ON';
+                $this->isActiveBuzzer = true;
+            } else {
+                $this->buzzerState = 'OFF';
+                $this->isActiveBuzzer = false;
+            }
+
+            $reference->set($this->buzzerState);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error toggling status: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function handleBuzzerStateUpdate($buzzerState)
+    {
+        $this->buzzerState = $buzzerState;
+        $this->isActiveBuzzer = $buzzerState === 'ON';
     }
 
     public function render()

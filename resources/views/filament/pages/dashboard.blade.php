@@ -95,6 +95,22 @@
             Livewire.dispatch('updateLiquidLevel', { liquidLevel: liquidLevel});
         });
         
+        // Listen to SMS State
+        const smsRef = ref(database, 'System/SMS');
+        onValue(smsRef, (snapshot) => {
+            const smsState = snapshot.val();
+            console.log('SMS State: ', smsState);
+            Livewire.dispatch('updateSMSState', { smsState });
+        });
+
+        // Listen to Buzzer State
+        const buzzerRef = ref(database, 'System/Buzzer');
+        onValue(buzzerRef, (snapshot) => {
+            const buzzerState = snapshot.val();
+            console.log('Buzzer State: ', buzzerState);
+            Livewire.dispatch('updateBuzzerState', { buzzerState });
+        });
+        
     </script>
     <script>
         window.addEventListener('reload', event => {
